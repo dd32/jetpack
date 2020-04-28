@@ -12,7 +12,6 @@ import { __ } from '@wordpress/i18n';
 import { Component } from '@wordpress/element';
 import { compose } from '@wordpress/compose';
 import { withSelect } from '@wordpress/data';
-import deprecated from '@wordpress/deprecated';
 import { keyboardReturn } from '@wordpress/icons';
 import { MediaUpload, MediaUploadCheck, URLPopover } from '@wordpress/block-editor';
 
@@ -26,15 +25,15 @@ const InsertFromURLPopover = ( { src, onChange, onSubmit, onClose } ) => (
 			<input
 				className="block-editor-media-placeholder__url-input-field"
 				type="url"
-				aria-label={ __( 'URL' ) }
-				placeholder={ __( 'Paste or type URL' ) }
+				aria-label={ __( 'URL', 'jetpack' ) }
+				placeholder={ __( 'Paste or type URL', 'jetpack' ) }
 				onChange={ onChange }
 				value={ src }
 			/>
 			<Button
 				className="block-editor-media-placeholder__url-input-submit-button"
 				icon={ keyboardReturn }
-				label={ __( 'Apply' ) }
+				label={ __( 'Apply', 'jetpack' ) }
 				type="submit"
 			/>
 		</form>
@@ -138,7 +137,7 @@ export class MediaPlaceholder extends Component {
 		let title = labels.title;
 
 		if ( ! mediaUpload && ! onSelectURL ) {
-			instructions = __( 'To edit this block, you need permission to upload media.' );
+			instructions = __( 'To edit this block, you need permission to upload media.', 'jetpack' );
 		}
 
 		if ( instructions === undefined || title === undefined ) {
@@ -148,32 +147,35 @@ export class MediaPlaceholder extends Component {
 			const isVideo = isOneType && 'video' === allowedTypes[ 0 ];
 
 			if ( instructions === undefined && mediaUpload ) {
-				instructions = __( 'Upload a media file or pick one from your media library.' );
+				instructions = __( 'Upload a media file or pick one from your media library.', 'jetpack' );
 
 				if ( isAudio ) {
 					instructions = __(
-						'Upload an audio file, pick one from your media library, or add one with a URL.'
+						'Upload an audio file, pick one from your media library, or add one with a URL.',
+						'jetpack'
 					);
 				} else if ( isImage ) {
 					instructions = __(
-						'Upload an image file, pick one from your media library, or add one with a URL.'
+						'Upload an image file, pick one from your media library, or add one with a URL.',
+						'jetpack'
 					);
 				} else if ( isVideo ) {
 					instructions = __(
-						'Upload a video file, pick one from your media library, or add one with a URL.'
+						'Upload a video file, pick one from your media library, or add one with a URL.',
+						'jetpack'
 					);
 				}
 			}
 
 			if ( title === undefined ) {
-				title = __( 'Media' );
+				title = __( 'Media', 'jetpack' );
 
 				if ( isAudio ) {
-					title = __( 'Audio' );
+					title = __( 'Audio', 'jetpack' );
 				} else if ( isImage ) {
-					title = __( 'Image' );
+					title = __( 'Image', 'jetpack' );
 				} else if ( isVideo ) {
-					title = __( 'Video' );
+					title = __( 'Video', 'jetpack' );
 				}
 			}
 		}
@@ -202,11 +204,11 @@ export class MediaPlaceholder extends Component {
 			onCancel && (
 				<Button
 					className="block-editor-media-placeholder__cancel-button"
-					title={ __( 'Cancel' ) }
+					title={ __( 'Cancel', 'jetpack' ) }
 					isLink
 					onClick={ onCancel }
 				>
-					{ __( 'Cancel' ) }
+					{ __( 'Cancel', 'jetpack' ) }
 				</Button>
 			)
 		);
@@ -226,7 +228,7 @@ export class MediaPlaceholder extends Component {
 					isPressed={ isURLInputVisible }
 					isTertiary
 				>
-					{ __( 'Insert from URL' ) }
+					{ __( 'Insert from URL', 'jetpack' ) }
 				</Button>
 				{ isURLInputVisible && (
 					<InsertFromURLPopover
@@ -269,7 +271,7 @@ export class MediaPlaceholder extends Component {
 								open();
 							} }
 						>
-							{ __( 'Media Library' ) }
+							{ __( 'Media Library', 'jetpack' ) }
 						</Button>
 					);
 				} }
@@ -294,7 +296,7 @@ export class MediaPlaceholder extends Component {
 											'block-editor-media-placeholder__upload-button'
 										) }
 									>
-										{ __( 'Upload' ) }
+										{ __( 'Upload', 'jetpack' ) }
 									</Button>
 									{ mediaLibraryButton }
 									{ this.renderUrlSelectionUI() }
@@ -322,7 +324,7 @@ export class MediaPlaceholder extends Component {
 						accept={ accept }
 						multiple={ multiple }
 					>
-						{ __( 'Upload' ) }
+						{ __( 'Upload', 'jetpack' ) }
 					</FormFileUpload>
 					{ mediaLibraryButton }
 					{ this.renderUrlSelectionUI() }

@@ -59,12 +59,12 @@ const edit = ( { attributes, clientId, isSelected, setAttributes } ) => {
 		<figure className="wp-block-jetpack-image-compare-block" id={ clientId }>
 			{ resizeListener }
 			<InspectorControls key="controls">
-				<PanelBody title={ __( 'Orientation' ) }>
+				<PanelBody title={ __( 'Orientation', 'jetpack' ) }>
 					<RadioControl
 						selected={ orientation || 'horizontal' }
 						options={ [
-							{ label: __( 'Side by side' ), value: 'horizontal' },
-							{ label: __( 'Above and below' ), value: 'vertical' },
+							{ label: __( 'Side by side', 'jetpack' ), value: 'horizontal' },
+							{ label: __( 'Above and below', 'jetpack' ), value: 'vertical' },
 						] }
 						onChange={ value => {
 							setAttributes( {
@@ -86,7 +86,9 @@ const edit = ( { attributes, clientId, isSelected, setAttributes } ) => {
 							<img id={ imageBeforeId } src={ imageBeforeUrl } alt={ imageBeforeAlt } />
 						) : (
 							<>
-								<div className="components-placeholder__label">{ __( 'Image Before' ) }</div>
+								<div className="components-placeholder__label">
+									{ __( 'Image Before', 'jetpack' ) }
+								</div>
 								<UploadPlaceholder
 									onSelect={ el => {
 										setAttributes( {
@@ -97,7 +99,7 @@ const edit = ( { attributes, clientId, isSelected, setAttributes } ) => {
 										juxtapose.scanPage();
 									} }
 									allowedTypes={ [ 'image' ] }
-									labels={ { title: __( 'First image to compare' ) } }
+									labels={ { title: __( 'First image to compare', 'jetpack' ) } }
 								/>
 							</>
 						) }
@@ -108,7 +110,9 @@ const edit = ( { attributes, clientId, isSelected, setAttributes } ) => {
 							<img id={ imageAfterId } src={ imageAfterUrl } alt={ imageAfterAlt } />
 						) : (
 							<>
-								<div className="components-placeholder__label">{ __( 'Image After' ) }</div>
+								<div className="components-placeholder__label">
+									{ __( 'Image After', 'jetpack' ) }
+								</div>
 								<UploadPlaceholder
 									onSelect={ el => {
 										setAttributes( {
@@ -119,7 +123,7 @@ const edit = ( { attributes, clientId, isSelected, setAttributes } ) => {
 										juxtapose.scanPage();
 									} }
 									allowedTypes={ [ 'image' ] }
-									labels={ { title: __( 'Second image to compare' ) } }
+									labels={ { title: __( 'Second image to compare', 'jetpack' ) } }
 								/>
 							</>
 						) }
@@ -129,7 +133,7 @@ const edit = ( { attributes, clientId, isSelected, setAttributes } ) => {
 			{ ( ! RichText.isEmpty( caption ) || ( isSelected && imageBeforeUrl && imageAfterUrl ) ) && (
 				<RichText
 					tagName="figcaption"
-					placeholder={ __( 'Write caption' ) }
+					placeholder={ __( 'Write caption', 'jetpack' ) }
 					value={ caption }
 					onChange={ value => setAttributes( { caption: value } ) }
 					inlineToolbar
