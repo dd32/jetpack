@@ -4,7 +4,6 @@
 import { InspectorControls, RichText } from '@wordpress/block-editor';
 import { PanelBody, RadioControl, Placeholder } from '@wordpress/components';
 import { useResizeObserver } from '@wordpress/compose';
-import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -12,6 +11,8 @@ import { __ } from '@wordpress/i18n';
  */
 import UploadPlaceholder from './upload-placeholder';
 import useDebounce from './use-debounce';
+import './editor.scss';
+import './view.js';
 
 /* global juxtapose */
 
@@ -131,9 +132,6 @@ const edit = ( { attributes, clientId, isSelected, setAttributes } ) => {
 					placeholder={ __( 'Write caption' ) }
 					value={ caption }
 					onChange={ value => setAttributes( { caption: value } ) }
-					// these are from image caption, do we need?
-					//unstableOnFocus={ this.onFocusCaption }
-					//isSelected={ this.state.captionFocused }
 					inlineToolbar
 				/>
 			) }

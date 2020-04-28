@@ -10,9 +10,15 @@
  * original MPL 2.0 license if you wish.
  */
 
-/* global Image */
-import './view.scss';
+/**
+ * WordPress dependencies
+ */
 import domReady from '@wordpress/dom-ready';
+
+/**
+ * Internal dependencies
+ */
+import './view.scss';
 
 domReady( function() {
 	const juxtapose = {
@@ -37,20 +43,10 @@ domReady( function() {
 		this.credit = properties.credit || false;
 	}
 
-	function getNaturalDimensions( DOMelement ) {
-		if ( DOMelement.naturalWidth && DOMelement.naturalHeight ) {
-			return { width: DOMelement.naturalWidth, height: DOMelement.naturalHeight };
-		}
-		// http://www.jacklmoore.com/notes/naturalwidth-and-naturalheight-in-ie/
-		const img = new Image();
-		img.src = DOMelement.src;
-		return { width: img.width, height: img.height };
-	}
-
 	function getImageDimensions( img ) {
 		const dimensions = {
-			width: getNaturalDimensions( img ).width,
-			height: getNaturalDimensions( img ).height,
+			width: img.naturalWidth,
+			height: img.naturalHeight,
 			aspect: function() {
 				return this.width / this.height;
 			},
@@ -194,8 +190,6 @@ domReady( function() {
 		if ( images.length === 2 ) {
 			this.imgBefore = new Graphic( images[ 0 ], this );
 			this.imgAfter = new Graphic( images[ 1 ], this );
-		} else {
-			console.warn( 'The images parameter takes two Image objects.' );
 		}
 
 		if ( this.imgBefore.credit || this.imgAfter.credit ) {
@@ -345,7 +339,7 @@ domReady( function() {
 				this.wrapper = document.querySelector( this.selector );
 				addClass( this.wrapper, 'juxtapose' );
 
-				this.wrapper.style.width = getNaturalDimensions( this.imgBefore.image ).width;
+				this.wrapper.style.width = this.imgBefore.image.naturalWidth;
 				this.setWrapperDimensions();
 
 				this.slider = document.createElement( 'div' );
@@ -398,10 +392,7 @@ domReady( function() {
 
 		_init: function() {
 			if ( this.checkImages() === false ) {
-				console.warn(
-					this,
-					'Check that the two images have the same aspect ratio for the slider to work correctly.'
-				);
+				return null;
 			}
 
 			this.updateSlider( this.options.startingPosition, false );
@@ -439,7 +430,6 @@ domReady( function() {
 				this.addEventListener( 'mouseup', function( evt ) {
 					evt.preventDefault();
 					evt.stopPropagation();
-					this.removeEventListener( 'mouseup', arguments.callee );
 					animate = false;
 				} );
 			} );
@@ -484,7 +474,7 @@ domReady( function() {
 				const key = event.which || event.keyCode;
 				if ( key === 13 || key === 32 ) {
 					self.updateSlider( '90%', true );
-					self.controller.setAttribute( 'aria-valuenow', 90 );
+					self.controller.setAttribute( 'aria-valuenow', 91 );
 				}
 			} );
 
@@ -550,7 +540,7 @@ domReady( function() {
 			w.innerText = '';
 		}
 
-		new juxtapose.JXSlider(
+		const slider = new juxtapose.JXSlider(
 			selector,
 			[
 				{
