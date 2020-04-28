@@ -10,9 +10,11 @@
  * original MPL 2.0 license if you wish.
  */
 
-/* global wp Image */
+/* global Image */
+import './view.scss';
+import domReady from '@wordpress/dom-ready';
 
-wp.domReady( function() {
+domReady( function() {
 	const juxtapose = {
 		sliders: [],
 		OPTIMIZATION_ACCEPTED: 1,
