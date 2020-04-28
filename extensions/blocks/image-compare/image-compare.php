@@ -6,6 +6,7 @@
  *
  * @package Jetpack
  */
+
 namespace Automattic\Jetpack\Extensions\ImageCompare;
 
 use Jetpack_AMP_Support;
@@ -14,11 +15,11 @@ use Jetpack_Gutenberg;
 const FEATURE_NAME = 'image-compare';
 const BLOCK_NAME   = 'jetpack/' . FEATURE_NAME;
 
- /**
-  * Registers the block for use in Gutenberg
-  * This is done via an action so that we can disable
-  * registration if we need to.
-  */
+/**
+ * Registers the block for use in Gutenberg
+ * This is done via an action so that we can disable
+ * registration if we need to.
+ */
 function register_block() {
 	jetpack_register_block(
 		BLOCK_NAME,
@@ -53,5 +54,7 @@ function load_assets( $attr, $content ) {
  * @return string
  */
 function render_amp( $attr ) {
+	// @TODO: what to show for AMP view?
 	// :shrug-emoji:
+	return '';
 }
