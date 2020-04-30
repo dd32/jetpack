@@ -30,8 +30,8 @@
 		"videopress",
 		"wordads"
 	],
-	"beta": [ "amazon", "instagram-gallery" ],
-	"experimental": [ "image-compare", "seo" ],
+	"beta": [ "amazon", "image-compare", "instagram-gallery" ],
+	"experimental": [ "seo" ],
 	"no-post-editor": [
 		"business-hours",
 		"button",
